@@ -1,22 +1,21 @@
 package ws
 
 import (
+	"context"
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/gofiber/contrib/websocket"
 	"github.com/gofiber/fiber/v2"
+	"github.com/kooroshh/fiber-boostrap/app/models"
+	"github.com/kooroshh/fiber-boostrap/app/repository"
 	"github.com/kooroshh/fiber-boostrap/pkg/env"
 )
 
-type MessagePayload struct {
-	From    string `json:"from"`
-	Message string `json:"message"`
-}
-
 func ServeWSMessaging(app *fiber.App) {
 	var clients = make(map[*websocket.Conn]bool)
-	var broadcast = make(chan MessagePayload)
+	var broadcast = make(chan models.MessagePayload)
 
 	app.Get("/message/v1/send", websocket.New(func(c *websocket.Conn) {
 		defer func() {
@@ -27,10 +26,15 @@ func ServeWSMessaging(app *fiber.App) {
 		clients[c] = true
 
 		for {
-			var msg MessagePayload
+			var msg models.MessagePayload
 			if err := c.ReadJSON(&msg); err != nil {
-				fmt.Println("error payload: ", err)
+				log.Println("error payload: ", err)
 				break
+			}
+			msg.Date = time.Now()
+			err := repository.InsertNewMessage(context.Background(), msg)
+			if err != nil {
+				log.Println(err)
 			}
 			broadcast <- msg
 		}
@@ -42,7 +46,7 @@ func ServeWSMessaging(app *fiber.App) {
 			for client := range clients {
 				err := client.WriteJSON(msg)
 				if err != nil {
-					fmt.Println("Failed to write json: ", err)
+					log.Println("Failed to write json: ", err)
 					client.Close()
 					delete(clients, client)
 				}

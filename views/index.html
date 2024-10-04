@@ -128,6 +128,20 @@
 
     // Check if JWT is stored in sessionStorage
     document.addEventListener('DOMContentLoaded', function() {
+      if ('Notification' in window) {
+        if (Notification.permission === 'granted') {
+          console.log("Notification permission already granted.");
+        } else if (Notification.permission !== 'denied') {
+          Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+              console.log("Notification permission granted.");
+            }
+          });
+        }
+      } else {
+        console.log('This browser does not support notifications.');
+      }
+      
       const storedToken = sessionStorage.getItem('jwtToken');
       if (storedToken) {
         showDashboard();
@@ -221,12 +235,39 @@
       });
     }
 
+    // Function to fetch message history
+    function fetchMessageHistory() {
+      fetch('/message/v1/history', {
+        method: 'GET',
+        headers: {
+          'Authorization': `${sessionStorage.getItem('jwtToken')}` // Include JWT token for authorization
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Assuming the data format is an array of messages
+        data.data.forEach(message => {
+          addMessageToChat(message.from, message.message); // Function to display messages in chat
+        });
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+    }
+    
+
     // Function to set up WebSocket connection
     function setupWebSocket() {
       socket = new WebSocket('ws://localhost:8080/message/v1/send'); // Replace with your WebSocket server URL
 
       socket.onopen = function(event) {
         console.log('Connected to WebSocket server.');
+        fetchMessageHistory()
         pendingMessages.forEach(message => {
           socket.send(message);
         });
@@ -235,6 +276,7 @@
 
       socket.onmessage = function(event) {
         const message = JSON.parse(event.data);
+        showNotification(message.from, message.message);  
         addMessageToChat(message.from, message.message);
       };
 
@@ -245,6 +287,21 @@
       socket.onerror = function(error) {
         console.error('WebSocket error:', error);
       };
+    }
+    
+    function showNotification(title, message) {
+      // Only show notifications if the user has granted permission and the page is not visible
+      if (Notification.permission === "granted") {
+        const notification = new Notification(title, {
+          body: message,
+          // icon: 'chat-icon.png'  // You can add a custom icon for the notification
+        });
+    
+        // Optional: Add click event to focus the window when the notification is clicked
+        notification.onclick = function() {
+          window.focus();
+        };
+      }
     }
 
     // Function to send a message via WebSocket

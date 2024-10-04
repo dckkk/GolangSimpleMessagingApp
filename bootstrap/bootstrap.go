@@ -1,6 +1,10 @@
 package bootstrap
 
 import (
+	"io"
+	"log"
+	"os"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/monitor"
@@ -14,7 +18,11 @@ import (
 
 func NewApplication() *fiber.App {
 	env.SetupEnvFile()
+	SetupLog()
+
 	database.SetupDatabase()
+	database.SetupMongoDB()
+
 	engine := html.New("./views", ".html")
 	app := fiber.New(fiber.Config{Views: engine})
 	app.Use(recover.New())
@@ -26,4 +34,13 @@ func NewApplication() *fiber.App {
 	router.InstallRouter(app)
 
 	return app
+}
+
+func SetupLog() {
+	logFile, err := os.OpenFile("./logs/log.txt", os.O_CREATE|os.O_APPEND|os.O_RDWR, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+	mw := io.MultiWriter(os.Stdout, logFile)
+	log.SetOutput(mw)
 }
