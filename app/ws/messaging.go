@@ -11,6 +11,7 @@ import (
 	"github.com/kooroshh/fiber-boostrap/app/models"
 	"github.com/kooroshh/fiber-boostrap/app/repository"
 	"github.com/kooroshh/fiber-boostrap/pkg/env"
+	"go.elastic.co/apm"
 )
 
 func ServeWSMessaging(app *fiber.App) {
@@ -31,11 +32,17 @@ func ServeWSMessaging(app *fiber.App) {
 				log.Println("error payload: ", err)
 				break
 			}
+
+			tx := apm.DefaultTracer.StartTransaction("Send Message", "ws")
+			ctx := apm.ContextWithTransaction(context.Background(), tx)
+
 			msg.Date = time.Now()
-			err := repository.InsertNewMessage(context.Background(), msg)
+			err := repository.InsertNewMessage(ctx, msg)
 			if err != nil {
 				log.Println(err)
 			}
+			tx.End()
+
 			broadcast <- msg
 		}
 	}))

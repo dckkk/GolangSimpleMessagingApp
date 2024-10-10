@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
     environment:
       - node.name=elasticsearch
       - discovery.type=single-node
@@ -20,7 +20,7 @@ services:
       - elk
 
   logstash:
-    image: docker.elastic.co/logstash/logstash:7.10.0
+    image: docker.elastic.co/logstash/logstash:7.17.0
     volumes:
       - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
       - ../logs:/usr/share/logstash/logs  # Mount Windows log directory
@@ -33,8 +33,9 @@ services:
     depends_on:
       - elasticsearch
       
+
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.10.0
+    image: docker.elastic.co/kibana/kibana:7.17.0
     ports:
       - "5601:5601"
     networks:
@@ -43,7 +44,7 @@ services:
       - elasticsearch
 
   filebeat:
-    image: docker.elastic.co/beats/filebeat:7.10.0
+    image: docker.elastic.co/beats/filebeat:7.17.0
     user: root
     volumes:
       - ../logs:/usr/share/filebeat/logs  # Mount Windows log directory
@@ -53,6 +54,16 @@ services:
       - logstash
     networks:
       - elk
+  
+  apm-server:
+    image: docker.elastic.co/apm/apm-server:7.17.0
+    environment:
+      - output.elasticsearch.hosts=["http://elasticsearch:9200"]
+    ports:
+      - "8200:8200"
+    networks:
+      - elk
+
 
 volumes:
   esdata:

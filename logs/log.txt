@@ -1,7 +1,0 @@
-2024/10/05 01:22:32 successfully migrate database!
-2024/10/05 01:22:32 successfully connected to mongoDB
-2024/10/05 01:33:47 successfully migrate database!
-2024/10/05 01:33:47 successfully connected to mongoDB
-2024/10/05 01:34:17 failed to parse jwt: token has invalid claims: token is expired
-2024/10/05 01:34:20 failed to get user session on DB:  record not found
-2024/10/05 01:34:22 failed to parse jwt: token has invalid claims: token is expired

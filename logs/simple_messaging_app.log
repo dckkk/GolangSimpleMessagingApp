@@ -1,0 +1,88 @@
+2024/10/05 15:20:04 Failed to connect to the Database! 
+dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it.
+2024/10/05 15:20:28 successfully migrate database!
+2024/10/05 15:20:28 successfully connected to mongoDB
+2024/10/05 15:21:24 failed to insert new user: Error 1062 (23000): Duplicate entry 'dicky7' for key 'uni_users_username'
+2024/10/05 15:21:26 failed to get user session on DB:  record not found
+2024/10/05 15:21:28 failed to parse jwt: token has invalid claims: token is expired
+2024/10/05 15:21:30 failed to parse jwt: token has invalid claims: token is expired
+2024/10/05 15:38:55 failed to parse jwt: token has invalid claims: token is expired
+2024/10/05 15:38:56 failed to parse jwt: token has invalid claims: token is expired
+2024/10/05 15:38:57 failed to parse jwt: token has invalid claims: token is expired
+2024/10/05 15:38:58 failed to parse jwt: token has invalid claims: token is expired
+2024/10/05 15:38:59 failed to parse jwt: token has invalid claims: token is expired
+2024/10/05 15:38:59 failed to parse jwt: token has invalid claims: token is expired
+2024/10/05 15:40:12 failed to insert new user: Error 1062 (23000): Duplicate entry 'dicky7' for key 'uni_users_username'
+2024/10/05 21:00:50 successfully migrate database!
+2024/10/05 21:00:50 successfully connected to mongoDB
+2024/10/05 21:00:50 failed to listen: listen tcp4 0.0.0.0:8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/10/05 21:01:03 successfully migrate database!
+2024/10/05 21:01:03 successfully connected to mongoDB
+2024/10/05 21:01:10 failed to insert new user: Error 1062 (23000): Duplicate entry 'dicky7' for key 'uni_users_username'
+2024/10/05 21:09:55 successfully migrate database!
+2024/10/05 21:09:55 successfully connected to mongoDB
+2024/10/05 21:14:06 successfully migrate database!
+2024/10/05 21:14:06 successfully connected to mongoDB
+2024/10/05 21:22:16 successfully migrate database!
+2024/10/05 21:22:16 successfully connected to mongoDB
+2024/10/05 21:23:17 successfully migrate database!
+2024/10/05 21:23:17 successfully connected to mongoDB
+2024/10/05 21:23:27 successfully migrate database!
+2024/10/05 21:23:27 successfully connected to mongoDB
+2024/10/05 21:23:44 successfully migrate database!
+2024/10/05 21:23:44 successfully connected to mongoDB
+2024/10/05 21:28:18 successfully migrate database!
+2024/10/05 21:28:18 successfully connected to mongoDB
+2024/10/05 21:35:26 successfully migrate database!
+2024/10/05 21:35:26 successfully connected to mongoDB
+2024/10/05 21:35:33 successfully migrate database!
+2024/10/05 21:35:33 successfully connected to mongoDB
+2024/10/05 22:38:46 successfully migrate database!
+2024/10/05 22:38:47 successfully connected to mongoDB
+2024/10/05 22:42:01 successfully migrate database!
+2024/10/05 22:42:01 successfully connected to mongoDB
+2024/10/05 22:42:16 failed to get user session on DB:  record not found
+2024/10/05 22:46:54 successfully migrate database!
+2024/10/05 22:46:54 successfully connected to mongoDB
+2024/10/05 22:47:02 failed to get user session on DB:  record not found
+2024/10/05 22:49:54 successfully migrate database!
+2024/10/05 22:49:54 successfully connected to mongoDB
+2024/10/05 22:50:08 successfully migrate database!
+2024/10/05 22:50:08 successfully connected to mongoDB
+2024/10/05 23:03:52 successfully migrate database!
+2024/10/05 23:03:52 successfully connected to mongoDB
+2024/10/05 23:04:03 failed to insert new user: Error 1062 (23000): Duplicate entry 'dicky7' for key 'uni_users_username'
+2024/10/05 23:04:05 failed to get user session on DB:  record not found
+2024/10/05 23:04:07 failed to parse jwt: token has invalid claims: token is expired
+2024/10/05 23:04:09 failed to parse jwt: token has invalid claims: token is expired
+2024/10/05 23:09:28 successfully migrate database!
+2024/10/05 23:09:28 successfully connected to mongoDB
+2024/10/05 23:18:54 successfully migrate database!
+2024/10/05 23:18:54 successfully connected to mongoDB
+2024/10/05 23:19:32 failed to get user session on DB:  record not found
+2024/10/05 23:21:28 successfully migrate database!
+2024/10/05 23:21:28 successfully connected to mongoDB
+2024/10/05 23:21:41 failed to get user session on DB:  record not found
+2024/10/05 23:27:13 successfully migrate database!
+2024/10/05 23:27:13 successfully connected to mongoDB
+2024/10/05 23:30:41 successfully migrate database!
+2024/10/05 23:30:41 successfully connected to mongoDB
+2024/10/05 23:34:09 successfully migrate database!
+2024/10/05 23:34:09 successfully connected to mongoDB
+2024/10/05 23:34:32 successfully migrate database!
+2024/10/05 23:34:32 successfully connected to mongoDB
+2024/10/05 23:42:59 successfully migrate database!
+2024/10/05 23:42:59 successfully connected to mongoDB
+2024/10/05 23:45:37 error payload:  websocket: close 1001 (going away)
+2024/10/05 23:48:22 successfully migrate database!
+2024/10/05 23:48:22 successfully connected to mongoDB
+2024/10/05 23:52:26 successfully migrate database!
+2024/10/05 23:52:26 successfully connected to mongoDB
+2024/10/05 23:52:57 error payload:  websocket: close 1001 (going away)
+2024/10/05 23:58:57 successfully migrate database!
+2024/10/05 23:58:57 successfully connected to mongoDB
+2024/10/06 00:01:38 successfully migrate database!
+2024/10/06 00:01:38 successfully connected to mongoDB
+2024/10/06 00:08:48 error payload:  websocket: close 1001 (going away)
+2024/10/09 21:17:11 successfully migrate database!
+2024/10/09 21:17:11 successfully connected to mongoDB

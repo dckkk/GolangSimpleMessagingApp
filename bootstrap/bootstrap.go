@@ -14,15 +14,17 @@ import (
 	"github.com/kooroshh/fiber-boostrap/pkg/database"
 	"github.com/kooroshh/fiber-boostrap/pkg/env"
 	"github.com/kooroshh/fiber-boostrap/pkg/router"
+	"go.elastic.co/apm"
 )
 
 func NewApplication() *fiber.App {
 	env.SetupEnvFile()
-	SetupLog()
+	SetupLogfile()
 
 	database.SetupDatabase()
 	database.SetupMongoDB()
 
+	apm.DefaultTracer.Service.Name = "simple-mesaging-app"
 	engine := html.New("./views", ".html")
 	app := fiber.New(fiber.Config{Views: engine})
 	app.Use(recover.New())
@@ -36,8 +38,8 @@ func NewApplication() *fiber.App {
 	return app
 }
 
-func SetupLog() {
-	logFile, err := os.OpenFile("./logs/log.txt", os.O_CREATE|os.O_APPEND|os.O_RDWR, 0666)
+func SetupLogfile() {
+	logFile, err := os.OpenFile("./logs/simple_messaging_app.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}

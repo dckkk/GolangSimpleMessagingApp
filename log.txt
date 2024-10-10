@@ -1,4 +1,0 @@
-2024/10/05 01:21:42 successfully migrate database!
-2024/10/05 01:21:42 successfully connected to mongoDB
-2024/10/05 01:22:10 successfully migrate database!
-2024/10/05 01:22:10 successfully connected to mongoDB
