@@ -8,6 +8,8 @@ RUN go mod tidy
 
 COPY . .
 
+COPY .env ./
+
 RUN go build -o simple-messaging-app
 
 RUN chmod +x simple-messaging-app
